@@ -3,7 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { ACreateComponent } from './a-create/a-create.component';
 
 const routes: Routes = [
-  { path: ':id', component: ACreateComponent },
+  { path: ':qid', component: ACreateComponent },
 ];
 
 @NgModule({

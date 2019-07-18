@@ -25,16 +25,20 @@ export class GlobalService {
   }
 
   sendQContent(content: string): Observable<Number> {
-    const data = { content: this.encrypt(content) };
+    let r = this.encrypt(content);
+    const data = {
+      content: r[0],
+      nonce: r[1],
+    };
     return this.http.post<QidRes>(`${environment.apiURL}/q`, data)
       .pipe(map(res => res.qid));
   }
 
-  private encrypt(content: string): string {
+  private encrypt(content: string): [string, string] {
     const contentRaw = decodeUTF8(content);
     const nonce = randomBytes(box.nonceLength);
     const contentEncrypted = box(contentRaw, nonce,
       this.thatKeyPair.publicKey, this.thisKeyPair.secretKey);
-    return encodeBase64(contentEncrypted);
+    return [encodeBase64(contentEncrypted), encodeBase64(nonce)];
   }
 }
