@@ -6,7 +6,7 @@ import { QCreatedComponent } from './q-created/q-created.component';
 
 const routes: Routes = [
   { path: 'create', component: QCreateComponent },
-  { path: 'created', component: QCreatedComponent },
+  { path: ':qid/created', component: QCreatedComponent },
   { path: '', redirectTo: '/create', pathMatch: 'full' }
 ];
 

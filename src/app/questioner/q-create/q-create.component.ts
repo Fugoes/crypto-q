@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { GlobalService } from '../global.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-q-create',
@@ -11,7 +12,10 @@ export class QCreateComponent implements OnInit {
 
   content: string = '';
 
-  constructor(private g: GlobalService) { }
+  constructor(
+    private g: GlobalService,
+    private router: Router
+  ) { }
 
   ngOnInit() {
     this.textarea.nativeElement.focus();
@@ -20,6 +24,6 @@ export class QCreateComponent implements OnInit {
   async onClick() {
     this.g.genKeyPairs();
     let qid = await this.g.sendQContent(this.content).toPromise();
-    console.log(qid);
+    this.router.navigateByUrl(`/q/${qid}/created`);
   }
 }
