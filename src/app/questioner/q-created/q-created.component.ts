@@ -4,6 +4,8 @@ import { box } from 'tweetnacl';
 import { encodeBase64 } from 'tweetnacl-util';
 import { ActivatedRoute } from '@angular/router';
 
+declare var ClipboardJS: any;
+
 @Component({
   selector: 'app-q-created',
   templateUrl: './q-created.component.html',
@@ -20,6 +22,7 @@ export class QCreatedComponent implements OnInit {
   }
 
   ngOnInit() {
+    new ClipboardJS('.btnCopy');
   }
 
   copyQuestionnaireAddress() {
