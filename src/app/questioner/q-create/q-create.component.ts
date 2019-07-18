@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { GlobalService } from '../global.service';
 
 @Component({
   selector: 'app-q-create',
@@ -6,10 +7,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./q-create.component.css']
 })
 export class QCreateComponent implements OnInit {
+  @ViewChild('textarea', { static: true }) private textarea: ElementRef;
 
-  constructor() { }
+  content: string = '';
 
-  ngOnInit() {
+  constructor(private g: GlobalService) { }
+
+  ngOnInit() { }
+
+  async onClick() {
+    let qid = await this.g.sendQContent(this.content).toPromise();
+    console.log(qid);
   }
-
 }
