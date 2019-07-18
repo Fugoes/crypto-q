@@ -1,14 +1,4 @@
-.fullbox {
-  position: absolute;
-  left: 0;
-  right: 0;
-  width: 100%;
-  border: 0;
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0.5em;
-  height: 90%;
-  font-family: Consolas, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace;
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+.monospace {
+  font-family: monospace, monospace;
 }

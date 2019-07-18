@@ -9,13 +9,14 @@ import { Router } from '@angular/router';
 })
 export class QCreateComponent implements OnInit {
   @ViewChild('textarea', { static: true }) private textarea: ElementRef;
-
+  rows: Number = 5;
   content: string = '';
 
   constructor(
     private g: GlobalService,
     private router: Router
-  ) { }
+  ) {
+  }
 
   ngOnInit() {
     this.textarea.nativeElement.focus();
@@ -25,5 +26,14 @@ export class QCreateComponent implements OnInit {
     this.g.genKeyPairs();
     let qid = await this.g.sendQContent(this.content).toPromise();
     this.router.navigateByUrl(`/q/${qid}/created`);
+  }
+
+  onChange() {
+    let count = this.content.split(/\r\n|\r|\n/).length;
+    if (count > 5) {
+      this.rows = count;
+    } else {
+      this.rows = 5;
+    }
   }
 }

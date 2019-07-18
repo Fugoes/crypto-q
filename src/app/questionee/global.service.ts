@@ -4,7 +4,7 @@ import { box, BoxKeyPair, randomBytes } from 'tweetnacl';
 import { decodeBase64, encodeUTF8 } from 'tweetnacl-util';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { environment } from 'src/environments/environment.prod';
+import { environment } from '../../environments/environment';
 
 class QuestionnaireData {
   content: string;

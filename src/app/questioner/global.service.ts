@@ -4,7 +4,7 @@ import { box, BoxKeyPair, randomBytes } from 'tweetnacl';
 import { decodeUTF8, encodeBase64 } from 'tweetnacl-util';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { environment } from 'src/environments/environment.prod';
+import { environment } from '../../environments/environment';
 
 class QidRes {
   qid: Number
