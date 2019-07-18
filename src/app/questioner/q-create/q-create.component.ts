@@ -13,9 +13,12 @@ export class QCreateComponent implements OnInit {
 
   constructor(private g: GlobalService) { }
 
-  ngOnInit() { }
+  ngOnInit() {
+    this.textarea.nativeElement.focus();
+  }
 
   async onClick() {
+    this.g.genKeyPairs();
     let qid = await this.g.sendQContent(this.content).toPromise();
     console.log(qid);
   }

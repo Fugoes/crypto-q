@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { box, BoxKeyPair } from 'tweetnacl';
+import { box, BoxKeyPair, randomBytes } from 'tweetnacl';
+import { decodeUTF8, encodeBase64 } from 'tweetnacl-util';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment.prod';
@@ -24,10 +25,16 @@ export class GlobalService {
   }
 
   sendQContent(content: string): Observable<Number> {
-    const data = {
-      content: content
-    };
+    const data = { content: this.encrypt(content) };
     return this.http.post<QidRes>(`${environment.apiURL}/q`, data)
       .pipe(map(res => res.qid));
+  }
+
+  private encrypt(content: string): string {
+    const contentRaw = decodeUTF8(content);
+    const nonce = randomBytes(box.nonceLength);
+    const contentEncrypted = box(contentRaw, nonce,
+      this.thatKeyPair.publicKey, this.thisKeyPair.secretKey);
+    return encodeBase64(contentEncrypted);
   }
 }
