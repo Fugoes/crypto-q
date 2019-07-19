@@ -1,2 +1,5 @@
-<button mat-button>Basic</button>
-<div>{{ content }}</div>
+<button mat-stroked-button (click)="submit()">Submit</button>
+<div class="content pre-line monospace">{{ content }}</div>
+<textarea cdkTextareaAutosize cdkAutosizeMinRows=5 [(ngModel)]="input" [disabled]="disabled" class="a-create-textarea"
+    placeholder="{{placeholder}}" #textarea>
+</textarea>
