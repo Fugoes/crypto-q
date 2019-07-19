@@ -1,4 +1,4 @@
-<button mat-stroked-button (click)="refresh()">Refresh</button>
+<button mat-raised-button (click)="refresh()">Refresh</button>
 <div *ngFor="let result of results$ | async" class="r-list">
     <mat-card class="monospace pre-line">{{result}}</mat-card>
 </div>
