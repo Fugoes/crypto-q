@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
+import { APP_BASE_HREF } from '@angular/common';
 import { GlobalService } from '../global.service';
 import { box } from 'tweetnacl';
 import { encodeBase64 } from 'tweetnacl-util';
@@ -22,7 +23,8 @@ export class QCreatedComponent implements OnInit {
 
   constructor(
     private g: GlobalService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    @Inject(APP_BASE_HREF) private baseHref: string
   ) {
   }
 
@@ -40,7 +42,7 @@ export class QCreatedComponent implements OnInit {
     array.set(this.g.thatKeyPair.secretKey, 0);
     array.set(this.g.thisKeyPair.publicKey, box.secretKeyLength);
     let frag = encodeBase64(array);
-    let base = `${location.origin}/${this.route.snapshot.params['qid']}`;
+    let base = `${this.baseHref}/${this.route.snapshot.params['qid']}`;
     return `${base}#${frag}`;
   }
 
@@ -49,7 +51,7 @@ export class QCreatedComponent implements OnInit {
     array.set(this.g.thisKeyPair.secretKey, 0);
     array.set(this.g.thatKeyPair.secretKey, box.secretKeyLength);
     let frag = encodeBase64(array);
-    let base = `${location.origin}/r/${this.route.snapshot.params['qid']}`;
+    let base = `${this.baseHref}/r/${this.route.snapshot.params['qid']}`;
     return `${base}#${frag}`;
   }
 }
