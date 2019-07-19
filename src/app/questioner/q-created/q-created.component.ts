@@ -3,6 +3,7 @@ import { GlobalService } from '../global.service';
 import { box } from 'tweetnacl';
 import { encodeBase64 } from 'tweetnacl-util';
 import { ActivatedRoute } from '@angular/router';
+import * as FileSaver from 'file-saver';
 
 declare var ClipboardJS: any;
 
@@ -14,6 +15,10 @@ declare var ClipboardJS: any;
 export class QCreatedComponent implements OnInit {
   questionnaireAddress: string = this.getQuestionnaireAddress();
   resultAddress: string = this.getResultAddress();
+  private content: string = "Questionnaire URL:\n"
+    + this.questionnaireAddress + "\n"
+    + "Results URL:\n"
+    + this.resultAddress + "\n";
 
   constructor(
     private g: GlobalService,
@@ -25,7 +30,9 @@ export class QCreatedComponent implements OnInit {
     new ClipboardJS('.btnCopy');
   }
 
-  copyQuestionnaireAddress() {
+  download() {
+    let blob = new Blob([this.content], { type: "text/plain" });
+    FileSaver.saveAs(blob, `${this.route.snapshot.params['qid']}.txt`);
   }
 
   private getQuestionnaireAddress(): string {

@@ -1,8 +1,11 @@
-<div>
-    Your Questionnaire Address:
-    <button class="btnCopy" data-clipboard-target="#qAddr" mat-stroked-button>Copy</button>
-    <div id="qAddr" class="monospace">{{ questionnaireAddress }}</div>
-    Your Questionnaire Results Address:
-    <button class="btnCopy" data-clipboard-target="#rAddr" mat-stroked-button>Copy</button>
-    <div id="rAddr" class="monospace">{{ resultAddress }}</div>
+<div class="button-row">
+    <button mat-stroked-button (click)="download()">Download</button>
+    <button mat-stroked-button class="btnCopy" data-clipboard-target="#qurl">Copy Questionnaire URL</button>
+    <button mat-stroked-button class="btnCopy" data-clipboard-target="#rurl">Copy Results URL</button>
+</div>
+<div class="monospace pre-line content" id="content">
+    Questionnaire URL:<br />
+    <span id="qurl">{{ questionnaireAddress }}</span><br />
+    Results URL:<br />
+    <span id="rurl">{{ resultAddress }}</span>
 </div>

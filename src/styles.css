@@ -2,3 +2,9 @@
 .monospace {
   font-family: monospace, monospace;
 }
+.pre-line {
+  white-space: pre-line;
+}
+.button-row button {
+  margin-right: 8px;
+}
