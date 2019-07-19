@@ -1,5 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import {
+  MatCardModule, MatButtonModule, MatListModule
+} from '@angular/material';
 
 import { ResultsViewerRoutingModule } from './results-viewer-routing.module';
 import { RViewerComponent } from './r-viewer/r-viewer.component';
@@ -8,7 +11,10 @@ import { RViewerComponent } from './r-viewer/r-viewer.component';
   declarations: [RViewerComponent],
   imports: [
     CommonModule,
-    ResultsViewerRoutingModule
+    ResultsViewerRoutingModule,
+    MatCardModule,
+    MatButtonModule,
+    MatListModule
   ]
 })
 export class ResultsViewerModule { }

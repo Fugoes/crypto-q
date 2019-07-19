@@ -14,7 +14,7 @@ declare var ClipboardJS: any;
 })
 export class QCreatedComponent implements OnInit {
   questionnaireAddress: string = this.getQuestionnaireAddress();
-  resultAddress: string = this.getResultAddress();
+  resultAddress: string = this.getResultsAddress();
   private content: string = "Questionnaire URL:\n"
     + this.questionnaireAddress + "\n"
     + "Results URL:\n"
@@ -44,7 +44,7 @@ export class QCreatedComponent implements OnInit {
     return `${base}#${frag}`;
   }
 
-  private getResultAddress(): string {
+  private getResultsAddress(): string {
     let array = new Uint8Array(box.secretKeyLength + box.secretKeyLength);
     array.set(this.g.thisKeyPair.secretKey, 0);
     array.set(this.g.thatKeyPair.secretKey, box.secretKeyLength);
