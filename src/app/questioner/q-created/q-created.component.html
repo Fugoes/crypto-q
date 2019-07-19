@@ -1,11 +1,23 @@
 <div class="button-row">
     <button mat-stroked-button (click)="download()">Download</button>
-    <button mat-stroked-button class="btnCopy" data-clipboard-target="#qurl">Copy Questionnaire URL</button>
-    <button mat-stroked-button class="btnCopy" data-clipboard-target="#rurl">Copy Results URL</button>
 </div>
-<div class="monospace pre-line content" id="content">
-    Questionnaire URL:<br />
-    <span id="qurl">{{ questionnaireAddress }}</span><br />
-    Results URL:<br />
-    <span id="rurl">{{ resultAddress }}</span>
+<div class="monospace pre-line" id="content">
+    <mat-card class="content">
+        <mat-card-header>
+            <mat-card-title>Questionnaire URL</mat-card-title>
+            <mat-card-subtitle>Send it to your questionee.</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+            <p id="qurl" class="btnCopy monospace" data-clipboard-target="#qurl">{{ questionnaireAddress }}</p>
+        </mat-card-content>
+    </mat-card>
+    <mat-card class="content">
+        <mat-card-header>
+            <mat-card-title>Results URL</mat-card-title>
+            <mat-card-subtitle>Open it to view results. You should keep it a <b>SECRET</b>.</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+            <p id="curl" class="btnCopy monospace" data-clipboard-target="#curl">{{ resultAddress }}</p>
+        </mat-card-content>
+    </mat-card>
 </div>

@@ -16,9 +16,11 @@ declare var ClipboardJS: any;
 export class QCreatedComponent implements OnInit {
   questionnaireAddress: string = this.getQuestionnaireAddress();
   resultAddress: string = this.getResultsAddress();
-  private content: string = "Questionnaire URL:\n"
-    + this.questionnaireAddress + "\n"
+  private content: string = "Questionnaire URL\n"
+    + "Send it to your questionee.\n"
+    + this.questionnaireAddress + "\n\n"
     + "Results URL:\n"
+    + "Open it to view results. You should keep it a SECRET.\n"
     + this.resultAddress + "\n";
 
   constructor(
