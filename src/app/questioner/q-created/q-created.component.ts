@@ -49,7 +49,7 @@ export class QCreatedComponent implements OnInit {
     array.set(this.g.thisKeyPair.secretKey, 0);
     array.set(this.g.thatKeyPair.secretKey, box.secretKeyLength);
     let frag = encodeBase64(array);
-    let base = `${location.origin}/q/${this.route.snapshot.params['qid']}`;
+    let base = `${location.origin}/r/${this.route.snapshot.params['qid']}`;
     return `${base}#${frag}`;
   }
 }

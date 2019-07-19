@@ -34,6 +34,11 @@ export class ACreateComponent implements OnInit {
   }
 
   submit() {
-    console.log("submit");
+    const qid = Number(this.route.snapshot.params['qid']);
+    this.g.sendAContent(qid, this.input).subscribe(
+      res => {
+        alert('success');
+      }
+    );
   }
 }

@@ -9,6 +9,11 @@ const routes: Routes = [
       .then(m => m.QuestionerModule)
   },
   {
+    path: 'r',
+    loadChildren: () => import('./results-viewer/results-viewer.module')
+      .then(m => m.ResultsViewerModule)
+  },
+  {
     path: '',
     loadChildren: () => import('./questionee/questionee.module')
       .then(m => m.QuestioneeModule)
