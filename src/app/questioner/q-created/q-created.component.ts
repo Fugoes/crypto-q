@@ -5,6 +5,7 @@ import { box } from 'tweetnacl';
 import { encodeBase64 } from 'tweetnacl-util';
 import { ActivatedRoute } from '@angular/router';
 import * as FileSaver from 'file-saver';
+import { environment } from 'src/environments/environment';
 
 declare var ClipboardJS: any;
 
@@ -42,7 +43,7 @@ export class QCreatedComponent implements OnInit {
     array.set(this.g.thatKeyPair.secretKey, 0);
     array.set(this.g.thisKeyPair.publicKey, box.secretKeyLength);
     let frag = encodeBase64(array);
-    let base = `${this.baseHref}/${this.route.snapshot.params['qid']}`;
+    let base = `${environment.url}/${this.route.snapshot.params['qid']}`;
     return `${base}#${frag}`;
   }
 
@@ -51,7 +52,7 @@ export class QCreatedComponent implements OnInit {
     array.set(this.g.thisKeyPair.secretKey, 0);
     array.set(this.g.thatKeyPair.secretKey, box.secretKeyLength);
     let frag = encodeBase64(array);
-    let base = `${this.baseHref}/r/${this.route.snapshot.params['qid']}`;
+    let base = `${environment.url}/r/${this.route.snapshot.params['qid']}`;
     return `${base}#${frag}`;
   }
 }
